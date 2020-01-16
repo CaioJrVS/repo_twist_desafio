@@ -2,10 +2,11 @@ const data = require('./data');
 
 //Noticias de cada candidato:
 
+let noticiasPorCandidato = [];
 let noticiasFreixo = 0;
 let noticiasCrivella = 0;
 data.data.map(value=>{
-    if (value.candidato === 'Crivella'){
+    if (value.candidato == 'Crivella'){
         noticiasCrivella ++;
     }
     if (value.candidato == 'Freixo'){
@@ -13,8 +14,9 @@ data.data.map(value=>{
     }
 });
 
-export const noticiasPorCandidato= {Crivella:noticiasCrivella, Freixo:noticiasFreixo};
+noticiasPorCandidato= {Crivella:noticiasCrivella, Freixo:noticiasFreixo};
 
+export const noticiasPorCandidato= noticiasPorCandidato;
 
 
 //Noticias de cada candidato por dia
@@ -23,9 +25,9 @@ export const noticiasPorCandidato= {Crivella:noticiasCrivella, Freixo:noticiasFr
 let noticiasPorDiaCrivella =[];
 let noticiasPorDiaFreixo =[];
 
-let contaDias =0;
-let dia = data.data[0].date_published.slice(8,10);
-for (let i=0; i< noticiasPorCandidato.Freixo ;i++){
+contaDias =0;
+dia = data.data[0].date_published.slice(8,10);
+for (i=0; i< noticiasPorCandidato.Freixo ;i++){
 
     if (data.data[i].date_published.slice(8,10) == dia){
         contaDias++
@@ -36,12 +38,12 @@ for (let i=0; i< noticiasPorCandidato.Freixo ;i++){
         dia=data.data[i].date_published.slice(8,10);
     }
 };
-noticiasPorDiaFreixo.push({dia:data.data[noticiasPorCandidato.Freixo].date_published.slice(5,10),numDeNoticias:contaDias});
+noticiasPorDiaFreixo.push({dia:data.data[i].date_published.slice(5,10),numDeNoticias:contaDias});
 
 contaDias =0
 dia = data.data[noticiasPorCandidato.Freixo].date_published.slice(8,10);
 
-for( let i = noticiasPorCandidato.Freixo; i< noticiasPorCandidato.Crivella+noticiasPorCandidato.Freixo; i++ ){
+for( i = noticiasPorCandidato.Freixo; i< noticiasPorCandidato.Crivella+noticiasPorCandidato.Freixo; i++ ){
     if (data.data[i].date_published.slice(8,10) == dia){
         contaDias++
     }
@@ -51,6 +53,6 @@ for( let i = noticiasPorCandidato.Freixo; i< noticiasPorCandidato.Crivella+notic
         dia=data.data[i].date_published.slice(8,10);
     }
 };
-noticiasPorDiaCrivella.push({dia:data.data[noticiasPorCandidato.Freixo].date_published.slice(5,10),numDeNoticias:contaDias});
+noticiasPorDiaCrivella.push(contaDias);
 
 export const noticiasPorDia= {Crivella:noticiasPorDiaCrivella,Freixo:noticiasPorDiaFreixo};
