@@ -1,13 +1,11 @@
 import React , {Component} from 'react';
 import * as d3 from 'd3';
 
-import {noticiasPorCandidato, noticiasPorDia} from '../../Data/dataHandler';
 
 class PieChart extends Component {
 
     componentDidMount(){
-        console.log(noticiasPorDia);
-        const data = noticiasPorCandidato;
+        const data = this.props.data;
         this.drawPieChart(data);
     }
 
@@ -84,7 +82,7 @@ class PieChart extends Component {
           .data(data_ready)
           .enter()
           .append('text')
-            .text( (d) => { console.log(d.data.key) ; return d.data.key } )
+            .text( (d) => {  return d.data.key } )
             .attr('transform', (d)=> {
                 let pos = outerArc.centroid(d);
                 let midangle = d.startAngle + (d.endAngle - d.startAngle) / 2

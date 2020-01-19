@@ -6,11 +6,12 @@ let noticiasFreixo = 0;
 let noticiasCrivella = 0;
 data.data.map(value=>{
     if (value.candidato === 'Crivella'){
-        noticiasCrivella ++;
+        return (noticiasCrivella ++);
     }
-    if (value.candidato == 'Freixo'){
-        noticiasFreixo ++;
+    if (value.candidato === 'Freixo'){
+        return(noticiasFreixo ++);
     }
+    return 0
 });
 
 export const noticiasPorCandidato= {Crivella:noticiasCrivella, Freixo:noticiasFreixo};
@@ -27,7 +28,7 @@ let contaDias =0;
 let dia = data.data[0].date_published.slice(8,10);
 for (let i=0; i< noticiasPorCandidato.Freixo ;i++){
 
-    if (data.data[i].date_published.slice(8,10) == dia){
+    if (data.data[i].date_published.slice(8,10) === dia){
         contaDias++
     }
     else{
@@ -42,7 +43,7 @@ contaDias =0
 dia = data.data[noticiasPorCandidato.Freixo].date_published.slice(8,10);
 
 for( let i = noticiasPorCandidato.Freixo; i< noticiasPorCandidato.Crivella+noticiasPorCandidato.Freixo; i++ ){
-    if (data.data[i].date_published.slice(8,10) == dia){
+    if (data.data[i].date_published.slice(8,10) === dia){
         contaDias++
     }
     else{
